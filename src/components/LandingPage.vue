@@ -56,8 +56,9 @@
               href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
               target="_blank"
               class="text-center ma-5"
-              >Donate at your own risk</v-btn
+              >Donate?</v-btn
             >
+            <h6>* at your own risk</h6>
           </v-col>
         </v-row>
       </v-container>
