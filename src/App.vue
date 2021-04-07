@@ -1,32 +1,62 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+  <v-app id="app">
     <router-view />
-  </div>
+    <svg width="0" height="0">
+      <filter
+        id="basicDropShadow"
+        x="-20%"
+        y="-20%"
+        width="140%"
+        height="140%"
+        filterUnits="objectBoundingBox"
+        primitiveUnits="userSpaceOnUse"
+        color-interpolation-filters="linearRGB"
+      >
+        <feOffset dx="2" dy="2" in="SourceAlpha" result="offset" />
+        <feGaussianBlur stdDeviation="2 2" in="offset" result="blur" />
+        <feFlood flood-color="#172841" flood-opacity="0.7" result="flood" />
+        <feComposite in="flood" in2="blur" operator="in" result="composite" />
+        <feMerge result="merge">
+          <feMergeNode in="composite" result="mergeNode" />
+          <feMergeNode in="SourceGraphic" result="mergeNode1" />
+        </feMerge>
+      </filter>
+    </svg>
+  </v-app>
 </template>
 
 <style>
+html,
+body {
+  height: 100%;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  overflow-x: hidden;
+  background-repeat: no-repeat;
+  /* background-image: url("/assets/landingPage/bostonHacksLoadingLogo.svg"); */
+  background-position: center calc(50vh - 75px);
+  background-size: 150px;
+
+  display: flex;
+  flex-direction: column;
 }
 
-#nav {
-  padding: 30px;
+#router {
+  flex: 1 0 auto;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.slide-enter-active,
+.slide-leave-active {
+  transition: opacity 0.5s, transform 0.5s;
+}
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
+  transform: scale(0.97);
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.pt-70px {
+  padding-top: 70px;
 }
 </style>
